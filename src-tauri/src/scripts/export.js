@@ -154,8 +154,12 @@ async function init() {
     }).join('');
     const data = ExportMD.turndown(content);
     const { id, filename } = getName();
-    await invoke('save_file', { name: `notes/${id}.md`, content: data });
-    await invoke('download_list', { pathname: 'chat.notes.json', filename, id, dir: 'notes' });
+    const sanitizedText = filename.replace(/[<>:\"\/\?\'\\*\.#]/g, '');
+    const withoutSpaces = sanitizedText.replace(/ /g, '_');
+    const parts = withoutSpaces.split('|');
+    const filePath = `notes/${parts.join('/')}.md`;
+    await invoke('save_file', { name: filePath, content: data });
+    await invoke('download_list', { pathname: 'chat.notes.json', withoutSpaces, id, dir: 'notes' });
   }
 
   function downloadThread({ as = Format.PNG } = {}) {
@@ -210,7 +214,7 @@ async function init() {
 
   function getName() {
     const id = window.crypto.getRandomValues(new Uint32Array(1))[0].toString(36);
-    const name = document.querySelector('nav .overflow-y-auto a.hover\\:bg-gray-800')?.innerText?.trim() || '';
+    const name = document.querySelector('title')?.innerText?.trim() || '';
     return { filename: name ? name : id, id, pathname: 'chat.download.json' };
   }
 
