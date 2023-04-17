@@ -73,9 +73,9 @@
       "shortDescription": "ChatGPT",
       "targets": "all",
       "windows": {
-        "certificateThumbprint": null,
+        "certificateThumbprint": "A4343F6D6FE379304536A3F735047AB14A853456",
         "digestAlgorithm": "sha256",
-        "timestampUrl": "",
+        "timestampUrl": "http://timestamp.digicert.com",
         "webviewInstallMode": {
           "silent": true,
           "type": "embedBootstrapper"
