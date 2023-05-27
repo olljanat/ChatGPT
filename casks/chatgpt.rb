@@ -1,5 +1,5 @@
 cask "chatgpt" do
-  version "1.0.0"
+  version "1.0.101"
   arch = Hardware::CPU.arch.to_s
   sha256s = {
     "x86_64" => "474c6024ac1100512c242449da8d93b521334d0d03a9457c42446293a64eaff4",

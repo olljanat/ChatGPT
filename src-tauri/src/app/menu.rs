@@ -114,25 +114,6 @@ pub fn init() -> Menu {
           }),
       )
       .into(),
-      Submenu::new(
-        "Auto Update",
-        Menu::new()
-          .add_item(if auto_update == "prompt" {
-            update_prompt.selected()
-          } else {
-            update_prompt
-          })
-          .add_item(if auto_update == "silent" {
-            update_silent.selected()
-          } else {
-            update_silent
-          }), // .add_item(if auto_update == "disable" {
-              //     update_disable.selected()
-              // } else {
-              //     update_disable
-              // })
-      )
-      .into(),
       MenuItem::Separator.into(),
       popup_search_menu.into(),
       CustomMenuItem::new("sync_prompts", "Sync Prompts").into(),
